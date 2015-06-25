@@ -177,6 +177,7 @@
 }
 
 - (void)drawProgress:(CGContextRef)context withFrame:(CGRect)frame {
+    CGRect rectToDrawIn;
     if (self.border) {
         CGFloat borderWidth = 5.0f;
         if (self.borderWidth) {
