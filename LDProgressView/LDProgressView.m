@@ -114,6 +114,28 @@
         float inset = self.progressInset.floatValue;
         [self drawProgress:context withFrame:self.progressInset ? CGRectInset(rect, inset, inset) : rect];
     }
+
+    if (self.border) {
+        [self drawBorder:context inRect:rect];
+    }
+}
+
+- (void)drawBorder:(CGContextRef)context inRect:(CGRect)rect {
+    CGContextSaveGState(context);
+    UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:self.borderRadius.floatValue];
+    if (self.borderWidth) {
+        [roundedRect setLineWidth:[self.borderWidth floatValue]];
+    } else {
+        [roundedRect setLineWidth:10.0f];
+    }
+    if (self.colorBorder) {
+        [[self colorBorder] setStroke];
+    } else {
+        [[UIColor whiteColor] setStroke];
+    }
+    [roundedRect stroke];
+    CGContextStrokeRect(context, rect);
+    CGContextRestoreGState(context);
 }
 
 - (void)drawProgressBackground:(CGContextRef)context inRect:(CGRect)rect {
@@ -155,7 +177,15 @@
 }
 
 - (void)drawProgress:(CGContextRef)context withFrame:(CGRect)frame {
-    CGRect rectToDrawIn = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width * self.progress, frame.size.height);
+    if (self.border) {
+        CGFloat borderWidth = 5.0f;
+        if (self.borderWidth) {
+            borderWidth = [self.borderWidth floatValue] / 2;
+        }
+        rectToDrawIn = CGRectMake(frame.origin.x + borderWidth, frame.origin.y + borderWidth, frame.size.width * self.progress - borderWidth * 2, frame.size.height - borderWidth * 2);
+    } else {
+        rectToDrawIn = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width * self.progress, frame.size.height);
+    }
     CGRect insetRect = CGRectInset(rectToDrawIn, self.progress > 0.03 ? 0.5 : -0.5, 0.5);
     if (![self.showText boolValue]) {
         insetRect = rectToDrawIn;

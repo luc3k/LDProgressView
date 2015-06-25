@@ -38,6 +38,10 @@ typedef enum {
 @property (nonatomic, strong) NSNumber *progressInset UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) NSNumber *borderRadius UI_APPEARANCE_SELECTOR;
 
+@property (nonatomic, strong) NSNumber *border UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) UIColor *colorBorder UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) NSNumber *borderWidth UI_APPEARANCE_SELECTOR;
+
 @property (nonatomic) NSTextAlignment textAlignment;
 @property (nonatomic) LDProgressType type;
 @property (nonatomic) LDAnimateDirection animateDirection;
