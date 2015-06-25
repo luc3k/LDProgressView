@@ -1,6 +1,6 @@
 {
   "name": "LDProgressView",
-  "version": "1.2.1",
+  "version": "1.2.1-l",
   "summary": "A configurable progress view with a single color setter written in CoreGraphics",
   "description": "A flat or gradient progress view with a simple color setter and customizable options written in pure Core Graphics.",
   "homepage": "https://github.com/lightdesign/LDProgressView",
@@ -13,8 +13,8 @@
     "Christian Di Lorenzo": "rcddeveloper@icloud.com"
   },
   "source": {
-    "git": "https://github.com/lightdesign/LDProgressView.git",
-    "tag": "1.2.1"
+    "git": "https://github.com/luc3k/LDProgressView.git",
+    "tag": "1.2.1-l"
   },
   "platforms": {
     "ios": "6.0"
